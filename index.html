@@ -126,6 +126,11 @@ body::before {
 
 .hero h1 .accent { color: var(--accent); }
 
+/* テキストブロック全体を少し上へオフセット。
+   .hero-body 自体に負マージンを掛けるとパネルの背景ごとずれて
+   画像との上下の揃いが崩れるため、中身の先頭要素に掛ける */
+.hero-body > h1 { margin-top: -2rem; }
+
 .location {
   display: inline-flex;
   align-items: center;
@@ -156,6 +161,8 @@ body::before {
   /* 1カラムでは行の引き伸ばしが効かないので高さを明示する */
   .hero-image { height: clamp(260px, 62vw, 380px); }
   .hero-body { padding: 2rem 1.25rem 2.5rem; }
+  /* 縦積み時は中央揃えではないので、上オフセットは不要（画像に食い込むため） */
+  .hero-body > h1 { margin-top: 0; }
 }
 
 .tagline strong {
