@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SNS Profile Cards — Hiro</title>
+<meta name="description" content="Twitter/X・Instagram・TikTok 風のプロフィールカード3パターン比較。">
+<meta name="color-scheme" content="light dark">
+
+<style>
+/* ============================================================
+   Design tokens （index.html と同一構成）
+   ============================================================ */
+:root {
+  --accent:        #0e9aa7;
+  --accent-strong: #0b7b86;
+  --accent-soft:   rgba(14, 154, 167, .10);
+
+  --bg:            #fbfbf9;
+  --bg-elevated:   #ffffff;
+  --border:        #e7e5e0;
+  --text:          #1c1c1a;
+  --text-muted:    #6b6b66;
+
+  --radius:        14px;
+  --shadow:        0 1px 2px rgba(20, 20, 18, .04),
+                   0 8px 24px rgba(20, 20, 18, .05);
+  /* カード3枚（360+300+220）＋余白が収まる幅 */
+  --maxw:          1000px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:        #3fc8d6;
+    --accent-strong: #76dbe6;
+    --accent-soft:   rgba(63, 200, 214, .12);
+
+    --bg:            #101312;
+    --bg-elevated:   #171b1a;
+    --border:        #262b2a;
+    --text:          #eceeed;
+    --text-muted:    #9aa3a1;
+
+    --shadow:        0 1px 2px rgba(0, 0, 0, .3),
+                     0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vh 0 auto 0;
+  height: 60vh;
+  background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ============================================================
+   Page head
+   ============================================================ */
+.page-head {
+  padding: clamp(3rem, 10vw, 5rem) 0 clamp(1.5rem, 5vw, 2.5rem);
+  text-align: center;
+}
+
+.page-head h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+}
+
+.page-head p {
+  margin: .6rem 0 0;
+  color: var(--text-muted);
+  font-size: .95rem;
+}
+
+/* ============================================================
+   Cards layout
+   ============================================================ */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem;
+  padding-block: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.card-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .9rem;
+}
+
+.card-label {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.card-size {
+  font-size: .68rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------
+   共通アバター
+   縦長写真から顔だけを切り出すため background-size で拡大する
+   （object-fit:cover だと正方形枠に全身が入り顔が小さくなるため）
+   ------------------------------------------------------------ */
+.avatar {
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-image: url("images/avatar.jpg");
+  background-size: 260% auto;
+  background-position: 50% 18%;
+  background-repeat: no-repeat;
+  background-color: #d8d4cc;
+}
+
+/* ============================================================
+   A. Twitter / X 風  360 x 200
+   ============================================================ */
+.x-card {
+  width: 360px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #2f3336;
+  border-radius: 16px;
+  background: #000;
+  color: #e7e9ea;
+  box-shadow: var(--shadow);
+}
+
+.x-header {
+  height: 56px;
+  background: linear-gradient(115deg, #1d9bf0 0%, #0f4c81 55%, #09253f 100%);
+}
+
+.x-body { padding: 0 14px 12px; }
+
+.x-avatar {
+  width: 54px;
+  height: 54px;
+  margin-top: -27px;
+  border: 3px solid #000;
+}
+
+.x-name {
+  margin-top: 4px;
+  font-size: .94rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.x-handle {
+  font-size: .78rem;
+  line-height: 1.3;
+  color: #71767b;
+}
+
+.x-bio {
+  margin: .3rem 0 0;
+  font-size: .75rem;
+  line-height: 1.5;
+}
+
+.x-loc {
+  margin: .15rem 0 0;
+  font-size: .72rem;
+  line-height: 1.4;
+  color: #71767b;
+}
+
+.x-stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: .3rem;
+  font-size: .74rem;
+  line-height: 1.4;
+  color: #71767b;
+}
+.x-stats b { color: #e7e9ea; font-weight: 700; }
+
+/* ============================================================
+   B. Instagram 風  300 x 300
+   ============================================================ */
+.ig-card {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  padding: 22px 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 16px;
+  background: #fff;
+  color: #262626;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.ig-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #e1306c;
+}
+
+.ig-name {
+  margin-top: 10px;
+  font-size: .94rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.ig-loc {
+  font-size: .72rem;
+  line-height: 1.4;
+  color: #8e8e8e;
+}
+
+.ig-bio {
+  margin: .35rem 0 0;
+  font-size: .76rem;
+  line-height: 1.5;
+}
+
+.ig-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.3rem;
+  margin-top: .8rem;
+}
+
+.ig-stats div { line-height: 1.25; }
+.ig-stats .num {
+  display: block;
+  font-size: .9rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.ig-stats .cap {
+  display: block;
+  font-size: .66rem;
+  color: #8e8e8e;
+}
+
+.ig-btn {
+  display: block;
+  width: 100%;
+  margin-top: .85rem;
+  padding: .42rem 0;
+  border: none;
+  border-radius: 8px;
+  background: #0095f6;
+  color: #fff;
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ============================================================
+   C. TikTok 風  220 x 380
+   ============================================================ */
+.tt-card {
+  width: 220px;
+  height: 380px;
+  overflow: hidden;
+  padding: 24px 18px;
+  border: 1px solid #2a2a2a;
+  border-radius: 16px;
+  background: #121212;
+  color: #fff;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.tt-avatar {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto;
+}
+
+.tt-name {
+  margin-top: 12px;
+  font-size: .94rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.tt-handle {
+  font-size: .76rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .6);
+}
+
+.tt-stats {
+  display: flex;
+  justify-content: center;
+  gap: .9rem;
+  margin-top: 1rem;
+}
+
+.tt-stats div { line-height: 1.25; }
+.tt-stats .num {
+  display: block;
+  font-size: .86rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.tt-stats .cap {
+  display: block;
+  font-size: .62rem;
+  color: rgba(255, 255, 255, .55);
+}
+
+.tt-bio {
+  margin: .75rem 0 0;
+  font-size: .72rem;
+  line-height: 1.6;
+}
+
+.tt-loc {
+  margin: .3rem 0 0;
+  font-size: .68rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, .55);
+}
+
+.tt-btn {
+  display: block;
+  width: 100%;
+  margin-top: .9rem;
+  padding: .5rem 0;
+  border: none;
+  border-radius: 8px;
+  background: #fe2c55;
+  color: #fff;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .ig-btn:hover { background: #1877f2; }
+  .tt-btn:hover { background: #e82046; }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: 3rem 0 3.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+
+footer a { color: var(--accent); text-decoration: none; }
+@media (hover: hover) {
+  footer a:hover { text-decoration: underline; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="page-head">
+    <h1>SNS Profile Cards</h1>
+    <p>同じプロフィールを3つのSNS風デザインで比較</p>
+  </header>
+
+  <main class="cards">
+
+    <!-- ============ A. Twitter / X 風 ============ -->
+    <figure class="card-item">
+      <figcaption class="card-label">Twitter / X</figcaption>
+      <div class="x-card">
+        <div class="x-header"></div>
+        <div class="x-body">
+          <div class="avatar x-avatar" role="img" aria-label="Hiro のアバター"></div>
+          <div class="x-name">Hiro</div>
+          <div class="x-handle">@hiro_okinawa</div>
+          <p class="x-bio">頭の中にあるものを、画面の上に。</p>
+          <p class="x-loc">📍 Okinawa, Japan</p>
+          <div class="x-stats">
+            <span><b>---</b> フォロー中</span>
+            <span><b>---</b> フォロワー</span>
+          </div>
+        </div>
+      </div>
+      <span class="card-size">360 × 200</span>
+    </figure>
+
+    <!-- ============ B. Instagram 風 ============ -->
+    <figure class="card-item">
+      <figcaption class="card-label">Instagram</figcaption>
+      <div class="ig-card">
+        <div class="avatar ig-avatar" role="img" aria-label="Hiro のアバター"></div>
+        <div class="ig-name">Hiro</div>
+        <div class="ig-loc">Okinawa, Japan</div>
+        <p class="ig-bio">頭の中にあるものを、画面の上に。</p>
+        <div class="ig-stats">
+          <div><span class="num">---</span><span class="cap">投稿</span></div>
+          <div><span class="num">---</span><span class="cap">フォロワー</span></div>
+          <div><span class="num">---</span><span class="cap">フォロー中</span></div>
+        </div>
+        <button class="ig-btn" type="button">フォローする</button>
+      </div>
+      <span class="card-size">300 × 300</span>
+    </figure>
+
+    <!-- ============ C. TikTok 風 ============ -->
+    <figure class="card-item">
+      <figcaption class="card-label">TikTok</figcaption>
+      <div class="tt-card">
+        <div class="avatar tt-avatar" role="img" aria-label="Hiro のアバター"></div>
+        <div class="tt-name">Hiro</div>
+        <div class="tt-handle">@hiro_okinawa</div>
+        <div class="tt-stats">
+          <div><span class="num">---</span><span class="cap">いいね</span></div>
+          <div><span class="num">---</span><span class="cap">フォロワー</span></div>
+          <div><span class="num">---</span><span class="cap">フォロー中</span></div>
+        </div>
+        <p class="tt-bio">頭の中にあるものを、画面の上に。</p>
+        <p class="tt-loc">📍 Okinawa, Japan</p>
+        <button class="tt-btn" type="button">フォローする</button>
+      </div>
+      <span class="card-size">220 × 380</span>
+    </figure>
+
+  </main>
+
+  <footer>
+    <p><a href="index.html">← Hiro のポートフォリオへ戻る</a></p>
+    <p>&copy; 2026 Hiro</p>
+  </footer>
+
+</div>
+</body>
+</html>
