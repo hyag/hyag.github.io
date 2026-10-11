@@ -145,11 +145,19 @@ body::before {
 .avatar {
   flex-shrink: 0;
   border-radius: 50%;
-  background-image: url("images/avatar.jpg");
-  background-size: 260% auto;
-  background-position: 50% 25%;
-  background-repeat: no-repeat;
-  background-color: #1a1a1a;
+  overflow: hidden;           /* 円の外へ出た画像を切る */
+  display: grid;
+  place-items: center;        /* 画像を円の中央に置く */
+  background-color: #1a1a1a;  /* 画像の外側 */
+}
+
+/* 表示倍率は background-size/object-fit ではなく transform で制御する */
+.avatar img {
+  display: block;
+  width: 100%;
+  height: auto;               /* 縦横比を保つ（height:100% だと歪むため） */
+  transform: scale(0.7);
+  transform-origin: center 30%;
 }
 
 /* ============================================================
@@ -415,7 +423,7 @@ footer a { color: var(--accent); text-decoration: none; }
       <div class="x-card">
         <div class="x-header"></div>
         <div class="x-body">
-          <div class="avatar x-avatar" role="img" aria-label="Hiro のアバター"></div>
+          <div class="avatar x-avatar"><img src="images/avatar.jpg" alt="Hiro のアバター"></div>
           <div class="x-name">Hiro</div>
           <div class="x-handle">@hiro_okinawa</div>
           <p class="x-bio">頭の中にあるものを、画面の上に。</p>
@@ -433,7 +441,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <figure class="card-item">
       <figcaption class="card-label">Instagram</figcaption>
       <div class="ig-card">
-        <div class="avatar ig-avatar" role="img" aria-label="Hiro のアバター"></div>
+        <div class="avatar ig-avatar"><img src="images/avatar.jpg" alt="Hiro のアバター"></div>
         <div class="ig-name">Hiro</div>
         <div class="ig-loc">Okinawa, Japan</div>
         <p class="ig-bio">頭の中にあるものを、画面の上に。</p>
@@ -451,7 +459,7 @@ footer a { color: var(--accent); text-decoration: none; }
     <figure class="card-item">
       <figcaption class="card-label">TikTok</figcaption>
       <div class="tt-card">
-        <div class="avatar tt-avatar" role="img" aria-label="Hiro のアバター"></div>
+        <div class="avatar tt-avatar"><img src="images/avatar.jpg" alt="Hiro のアバター"></div>
         <div class="tt-name">Hiro</div>
         <div class="tt-handle">@hiro_okinawa</div>
         <div class="tt-stats">
