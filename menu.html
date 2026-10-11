@@ -160,26 +160,36 @@ section { padding-block: clamp(1.6rem, 6vw, 2.6rem); }
 
 .item {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: .7rem;
   padding: .95rem 0;
   border-bottom: 1px dashed var(--border);
 }
 .item:last-child { border-bottom: none; }
 
+/* 品名＋説明文を左側に縦並びでまとめる */
+.item .info { min-width: 0; }
+
 .item .name {
+  display: block;
   font-size: .98rem;
   font-weight: 600;
 }
 
-/* 品名と金額をつなぐリーダー線 */
+.item .desc {
+  display: block;
+  font-size: .8rem;
+  color: var(--text-muted);
+  margin-top: .15rem;
+}
+
+/* 品名と金額をつなぐリーダー線（縦中央揃えに合わせて位置補正は不要） */
 .item .leader {
   flex: 1;
   min-width: 1.5rem;
   height: 1px;
   background: repeating-linear-gradient(
     to right, var(--border) 0 3px, transparent 3px 7px);
-  transform: translateY(-.25em);
 }
 
 .item .price {
@@ -234,22 +244,34 @@ footer {
       <h2 class="label" id="pasta-label">パスタ</h2>
       <ul class="menu reveal">
         <li class="item">
-          <span class="name">ペペロンチーノ</span>
+          <span class="info">
+            <span class="name">ペペロンチーノ</span>
+            <span class="desc">にんにくと唐辛子のシンプルな旨味</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,200円</span>
         </li>
         <li class="item">
-          <span class="name">ボンゴレビアンコ</span>
+          <span class="info">
+            <span class="name">ボンゴレビアンコ</span>
+            <span class="desc">沖縄産あさりの白ワイン蒸し</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,400円</span>
         </li>
         <li class="item">
-          <span class="name">カルボナーラ</span>
+          <span class="info">
+            <span class="name">カルボナーラ</span>
+            <span class="desc">卵とパルメザンのクリーミーな一皿</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,300円</span>
         </li>
         <li class="item">
-          <span class="name">トマトバジルパスタ</span>
+          <span class="info">
+            <span class="name">トマトバジルパスタ</span>
+            <span class="desc">完熟トマトとフレッシュバジル</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,100円</span>
         </li>
@@ -261,17 +283,26 @@ footer {
       <h2 class="label" id="pizza-label">ピザ</h2>
       <ul class="menu reveal">
         <li class="item">
-          <span class="name">マルゲリータ</span>
+          <span class="info">
+            <span class="name">マルゲリータ</span>
+            <span class="desc">トマト・モッツァレラ・バジルの定番</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,100円</span>
         </li>
         <li class="item">
-          <span class="name">クアトロフォルマッジ</span>
+          <span class="info">
+            <span class="name">クアトロフォルマッジ</span>
+            <span class="desc">4種のチーズを贅沢に</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,400円</span>
         </li>
         <li class="item">
-          <span class="name">プロシュートルッコラ</span>
+          <span class="info">
+            <span class="name">プロシュートルッコラ</span>
+            <span class="desc">生ハムとルッコラのさっぱり系</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,500円</span>
         </li>
@@ -283,22 +314,34 @@ footer {
       <h2 class="label" id="drink-label">ドリンク</h2>
       <ul class="menu reveal">
         <li class="item">
-          <span class="name">エスプレッソ</span>
+          <span class="info">
+            <span class="name">エスプレッソ</span>
+            <span class="desc">深煎り豆を使ったイタリア式</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">400円</span>
         </li>
         <li class="item">
-          <span class="name">カプチーノ</span>
+          <span class="info">
+            <span class="name">カプチーノ</span>
+            <span class="desc">きめ細かいミルクフォームで</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">500円</span>
         </li>
         <li class="item">
-          <span class="name">レモネード</span>
+          <span class="info">
+            <span class="name">レモネード</span>
+            <span class="desc">沖縄産シークヮーサー入り</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">600円</span>
         </li>
         <li class="item">
-          <span class="name">ハウスワイン</span>
+          <span class="info">
+            <span class="name">ハウスワイン</span>
+            <span class="desc">イタリア産 赤・白からお選びください</span>
+          </span>
           <span class="leader" aria-hidden="true"></span>
           <span class="price">700円</span>
         </li>
