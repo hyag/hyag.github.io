@@ -89,24 +89,42 @@ body::before {
 /* ============================================================
    Hero
    ============================================================ */
-.hero {
-  padding: clamp(4rem, 14vw, 7rem) 0 clamp(2.5rem, 8vw, 4rem);
-  text-align: center;
+/* 画像とテキストの重ね合わせの基準。
+   z-index:1 で body::before のグラデーションより前面に置く */
+.hero-media {
+  position: relative;
+  z-index: 1;
+  width: 100%;
 }
 
-.avatar {
-  width: 92px;
-  height: 92px;
-  margin: 0 auto 1.6rem;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 0;
-  background: linear-gradient(140deg, var(--accent), var(--accent-strong));
-  box-shadow: 0 0 0 6px var(--accent-soft), var(--shadow);
+/* 文字の可読性を確保する暗部グラデーション */
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+              rgba(0, 0, 0, .85) 0%,
+              rgba(0, 0, 0, .4) 50%,
+              transparent 100%);
+  pointer-events: none;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: clamp(400px, 55vw, 580px);
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* 画像下部中央に重ねる。::after より前面に出すため z-index:1 */
+.hero {
+  position: absolute;
+  z-index: 1;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: clamp(1.5rem, 4vw, 2.6rem);
+  text-align: center;
 }
 
 .hero h1 {
@@ -115,6 +133,8 @@ body::before {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -.02em;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .6);
 }
 
 .location {
@@ -133,9 +153,10 @@ body::before {
 
 .tagline {
   max-width: 30em;
-  margin: 1.6rem auto 0;
+  margin: 1.2rem auto 0;
   font-size: clamp(1.02rem, 3.4vw, 1.18rem);
-  color: var(--text);
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .7);
 }
 
 .tagline strong {
@@ -304,17 +325,21 @@ footer {
 </head>
 
 <body>
-<div class="wrap">
 
-  <!-- ============ HERO ============ -->
+<!-- ============ HERO（.wrap の外。全幅画像に文字を重ねる）============ -->
+<div class="hero-media">
+  <img class="hero-image" src="images/avatar.jpg" width="1800" height="2171"
+       alt="ノートパソコンに向かうメガネのぬいぐるみキャラクター">
   <header class="hero">
-    <div class="avatar" aria-hidden="true">H</div>
     <h1>Hiro</h1>
     <p class="location"><span aria-hidden="true">📍</span>沖縄</p>
     <p class="tagline">
       頭の中にあるものを、<strong>画面の上に。</strong>
     </p>
   </header>
+</div>
+
+<div class="wrap">
 
   <main>
     <!-- ============ SKILLS ============ -->
