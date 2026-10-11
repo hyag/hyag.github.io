@@ -218,6 +218,41 @@ section { padding-block: clamp(2rem, 7vw, 3.2rem); }
 }
 
 /* ============================================================
+   Works （カード本体は .card をスキルカードと共用）
+   ============================================================ */
+.works {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.tags { margin: .9rem 0 0; }
+
+.tag {
+  display: inline-block;
+  padding: .12rem .6rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  line-height: 1.7;
+}
+
+.card-link {
+  display: inline-block;
+  margin-top: .8rem;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+@media (hover: hover) {
+  .card-link:hover { text-decoration: underline; }
+}
+
+/* ============================================================
    About
    ============================================================ */
 .about {
@@ -303,15 +338,34 @@ footer {
           <div class="icon" aria-hidden="true">🌐</div>
           <h3>Webサイト制作</h3>
           <p>スマホ対応の静的サイトをゼロから制作。公開までひとりで完結します。</p>
-          <a href="menu.html"
-             style="display:inline-block;margin-top:.8rem;font-size:.82rem;color:var(--accent);">
-          制作サンプルを見る →</a>
         </article>
 
         <article class="card reveal">
           <div class="icon" aria-hidden="true">🎽</div>
           <h3>グラフィックデザイン</h3>
           <p>オリジナルTシャツやグッズ向けのデザイン制作。データ納品まで対応します。</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ WORKS ============ -->
+    <section aria-labelledby="works-label">
+      <h2 class="label" id="works-label">Works</h2>
+      <div class="works">
+
+        <article class="card reveal">
+          <h3>Trattoria Sole</h3>
+          <p>沖縄のイタリアンカフェのメニューページ</p>
+          <p class="tags"><span class="tag">HTML / CSS</span></p>
+          <a class="card-link" href="menu.html">サイトを見る →</a>
+        </article>
+
+        <article class="card reveal">
+          <h3>The Coral Tides</h3>
+          <p>インディーバンドのライブ告知LP</p>
+          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
+          <a class="card-link" href="live.html">サイトを見る →</a>
         </article>
 
       </div>
