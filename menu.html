@@ -94,6 +94,15 @@ body::before {
   text-align: center;
 }
 
+.hero-image {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 1.6rem;
+}
+
 .hero h1 {
   margin: 0;
   font-size: clamp(2.2rem, 8vw, 3.2rem);
@@ -233,6 +242,8 @@ footer {
 
   <!-- ============ HERO ============ -->
   <header class="hero">
+    <img class="hero-image" src="images/hero.jpg" width="2528" height="1696"
+         alt="木のテーブルに並んだペペロンチーノ、マルゲリータピザ、カプチーノ、エスプレッソ、パン">
     <h1>Trattoria Sole</h1>
     <p class="subtitle">沖縄のイタリアンカフェ</p>
     <p class="hours"><span aria-hidden="true">🕚</span>11:00 - 21:00（月曜定休）</p>
