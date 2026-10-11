@@ -89,53 +89,42 @@ body::before {
 /* ============================================================
    Hero
    ============================================================ */
-/* 画像とテキストの重ね合わせの基準。
+/* 左右2カラム（.wrap の外・全幅）。
    z-index:1 で body::before のグラデーションより前面に置く */
-.hero-media {
+.hero {
   position: relative;
   z-index: 1;
-  width: 100%;
-}
-
-/* 文字の可読性を確保する暗部グラデーション */
-.hero-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top,
-              rgba(0, 0, 0, .85) 0%,
-              rgba(0, 0, 0, .4) 50%,
-              transparent 100%);
-  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: clamp(420px, 60vw, 600px);
 }
 
 .hero-image {
   display: block;
   width: 100%;
-  height: clamp(380px, 50vw, 520px);
+  height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 30%;
 }
 
-/* 画像下部中央に重ねる。::after より前面に出すため z-index:1 */
-.hero {
-  position: absolute;
-  z-index: 1;
-  left: 1.25rem;
-  right: 1.25rem;
-  bottom: clamp(1.5rem, 4vw, 2.6rem);
-  text-align: center;
+.hero-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;   /* 縦中央揃え */
+  padding: 2rem;
+  background: var(--bg);
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.4rem, 9vw, 3.6rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -.02em;
-  color: #fff;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, .6);
 }
+
+.hero h1 .accent { color: var(--accent); }
 
 .location {
   display: inline-flex;
@@ -153,10 +142,20 @@ body::before {
 
 .tagline {
   max-width: 30em;
-  margin: 1.2rem auto 0;
+  margin: 1.2rem 0 0;
   font-size: clamp(1.02rem, 3.4vw, 1.18rem);
-  color: #fff;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, .7);
+  color: var(--text);
+}
+
+/* スマホは縦積み（画像が上・テキストが下） */
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  /* 1カラムでは行の引き伸ばしが効かないので高さを明示する */
+  .hero-image { height: clamp(260px, 62vw, 380px); }
+  .hero-body { padding: 2rem 1.25rem 2.5rem; }
 }
 
 .tagline strong {
@@ -326,18 +325,18 @@ footer {
 
 <body>
 
-<!-- ============ HERO（.wrap の外。全幅画像に文字を重ねる）============ -->
-<div class="hero-media">
+<!-- ============ HERO（.wrap の外・左右2カラム）============ -->
+<header class="hero">
   <img class="hero-image" src="images/avatar.jpg" width="1800" height="2171"
        alt="ノートパソコンに向かうメガネのぬいぐるみキャラクター">
-  <header class="hero">
-    <h1>Hiro</h1>
+  <div class="hero-body">
+    <h1>Every story needs a <span class="accent">Hero</span>.</h1>
     <p class="location"><span aria-hidden="true">📍</span>沖縄</p>
     <p class="tagline">
       頭の中にあるものを、<strong>画面の上に。</strong>
     </p>
-  </header>
-</div>
+  </div>
+</header>
 
 <div class="wrap">
 
