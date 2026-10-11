@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Coral Tides — 2026.12.13 桜坂劇場</title>
+<meta name="description" content="The Coral Tides ワンマンライブ。2026年12月13日（土）桜坂劇場。開場18:00 / 開演19:00。前売3,500円 / 当日4,000円。沖縄から鳴らす、本物の音。">
+<meta name="color-scheme" content="dark">
+
+<!-- OGP（公開時はURLと画像を差し替えてください） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Coral Tides — 2026.12.13 桜坂劇場">
+<meta property="og:description" content="沖縄から鳴らす、本物の音。2026年12月13日（土）桜坂劇場。">
+
+<style>
+/* ============================================================
+   Design tokens （index.html と同一構成／ライブ向けに暗色基調）
+   ============================================================ */
+:root {
+  --accent:        #e8a020;   /* 琥珀 */
+  --accent-strong: #ffc152;
+  --accent-soft:   rgba(232, 160, 32, .13);
+
+  --bg:            #14110c;
+  --bg-elevated:   #1e1a13;
+  --border:        #302920;
+  --text:          #f3eee5;
+  --text-muted:    #a89d8b;
+
+  --radius:        14px;
+  --shadow:        0 1px 2px rgba(0, 0, 0, .4),
+                   0 10px 30px rgba(0, 0, 0, .35);
+  --maxw:          720px;
+}
+
+/* OSがダークモードのときはさらに沈める */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #0b0906;
+    --bg-elevated: #16120c;
+    --border:      #27211a;
+    --text:        #f6f2ea;
+    --text-muted:  #b0a593;
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ステージ照明のような上部グロー */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25vh 0 auto 0;
+  height: 80vh;
+  background: radial-gradient(55% 60% at 50% 0%, var(--accent-soft), transparent 72%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: clamp(3.5rem, 12vw, 6rem) 0 clamp(2rem, 7vw, 3rem);
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 11vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  background: linear-gradient(170deg, var(--accent-strong), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tagline {
+  margin: 1.1rem 0 0;
+  font-size: clamp(1rem, 4vw, 1.22rem);
+  color: var(--text);
+}
+
+/* ---- カウントダウン ---- */
+.countdown {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .55rem;
+  margin-top: 2rem;
+  padding: .7rem 1.5rem;
+  border: 1px solid var(--accent-soft);
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.countdown-label {
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+
+.countdown-value {
+  font-size: clamp(1.15rem, 5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- 日程・会場 ---- */
+.hero-meta {
+  display: grid;
+  gap: .55rem;
+  margin: 2.2rem 0 0;
+  padding: 1.3rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.hero-meta > div {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.hero-meta dt {
+  flex-shrink: 0;
+  width: 3.5em;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--accent);
+}
+
+.hero-meta dd {
+  margin: 0;
+  font-size: .95rem;
+}
+
+/* ============================================================
+   Sections
+   ============================================================ */
+section { padding-block: clamp(1.8rem, 6vw, 2.8rem); }
+
+.label {
+  margin: 0 0 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================================
+   Tickets
+   ============================================================ */
+.tickets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.ticket {
+  padding: 1.5rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+/* 前売りを目立たせる */
+.ticket.is-advance { border-color: var(--accent); }
+
+.ticket .type {
+  display: block;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--text-muted);
+}
+
+.ticket .price {
+  display: block;
+  margin-top: .5rem;
+  font-size: clamp(1.7rem, 7vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.ticket .note {
+  display: block;
+  margin-top: .3rem;
+  font-size: .78rem;
+  color: var(--text-muted);
+}
+
+.contact {
+  margin: 1.1rem 0 0;
+  font-size: .84rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ============================================================
+   Access
+   ============================================================ */
+.access {
+  padding: 1.6rem 1.5rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.access .venue {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.access .address {
+  margin: .3rem 0 0;
+  font-size: .92rem;
+  color: var(--text-muted);
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 1.2rem;
+  padding: .55rem 1.3rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1a1206;
+  font-size: .86rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .2s ease;
+}
+@media (hover: hover) {
+  .map-link:hover { background: var(--accent-strong); }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: 3rem 0 3.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+@media (hover: hover) {
+  footer a:hover { text-decoration: underline; }
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .map-link { transition: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <p class="eyebrow">One Night Live</p>
+    <h1>The Coral Tides</h1>
+    <p class="tagline">沖縄から鳴らす、本物の音。</p>
+
+    <p class="countdown" id="countdown">
+      <span class="countdown-label">開演まで</span>
+      <!-- JS無効時は開演日時をそのまま表示 -->
+      <span class="countdown-value" id="countdown-value">2026.12.13 19:00</span>
+    </p>
+
+    <dl class="hero-meta">
+      <div>
+        <dt>日程</dt>
+        <dd><time datetime="2026-12-13">2026年12月13日（土）</time></dd>
+      </div>
+      <div>
+        <dt>時間</dt>
+        <dd>開場 18:00 ／ 開演 19:00</dd>
+      </div>
+      <div>
+        <dt>会場</dt>
+        <dd>桜坂劇場</dd>
+      </div>
+    </dl>
+  </header>
+
+  <main>
+    <!-- ============ TICKETS ============ -->
+    <section aria-labelledby="ticket-label">
+      <h2 class="label" id="ticket-label">Ticket</h2>
+      <div class="tickets">
+        <div class="ticket is-advance reveal">
+          <span class="type">前売り</span>
+          <span class="price">3,500円</span>
+          <span class="note">税込・ドリンク別</span>
+        </div>
+        <div class="ticket reveal">
+          <span class="type">当日</span>
+          <span class="price">4,000円</span>
+          <span class="note">税込・ドリンク別</span>
+        </div>
+      </div>
+      <p class="contact">
+        お問い合わせ：<a href="mailto:info@thecoraltides.com">info@thecoraltides.com</a>
+      </p>
+    </section>
+
+    <!-- ============ ACCESS ============ -->
+    <section aria-labelledby="access-label">
+      <h2 class="label" id="access-label">Access</h2>
+      <div class="access reveal">
+        <p class="venue">桜坂劇場</p>
+        <p class="address">〒900-0013　沖縄県那覇市牧志3-6-10</p>
+        <a class="map-link"
+           href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%9C%E5%9D%82%E5%8A%87%E5%A0%B4%20%E9%82%A3%E8%A6%87%E5%B8%82%E7%89%A7%E5%BF%973-6-10"
+           target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><a href="index.html">← Hiro のポートフォリオへ戻る</a></p>
+    <p>&copy; 2026 The Coral Tides</p>
+  </footer>
+
+</div>
+
+<script>
+// ---- カウントダウン（開演＝2026-12-13 19:00 JST 固定）----
+(function () {
+  var el = document.getElementById('countdown-value');
+  var label = document.querySelector('.countdown-label');
+  if (!el) return;
+
+  // タイムゾーン付きで指定し、閲覧者の地域に関わらず同じ瞬間を指すようにする
+  var target = new Date('2026-12-13T19:00:00+09:00');
+  if (isNaN(target.getTime())) return;   // 解析失敗時は初期表示のまま
+
+  var DAY = 86400000;
+  var JST = 9 * 3600000;
+
+  // 残り時間を24時間で割ると「前日20時」が0日になってしまうため、
+  // JST のカレンダー日付どうしで差を取る（JST に夏時間は無い）
+  function jstDayStart(ms) {
+    return Math.floor((ms + JST) / DAY) * DAY - JST;
+  }
+
+  function render() {
+    var now = Date.now();
+    var diff = target.getTime() - now;
+
+    if (diff <= 0) {
+      if (label) { label.textContent = ''; }
+      el.textContent = 'ご来場ありがとうございました';
+      return false;
+    }
+
+    var days = Math.round((jstDayStart(target.getTime()) - jstDayStart(now)) / DAY);
+    if (days === 0) {
+      if (label) { label.textContent = ''; }
+      el.textContent = '本日開演';
+    } else {
+      if (label) { label.textContent = '開演まで'; }
+      el.textContent = 'あと ' + days + ' 日';
+    }
+    return true;
+  }
+
+  if (render()) {
+    // 日付をまたいだときに自然に切り替わるよう1分ごとに更新
+    var timer = setInterval(function () {
+      if (!render()) { clearInterval(timer); }
+    }, 60000);
+  }
+})();
+
+// ---- スクロールで順にフェードイン ----
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      setTimeout(function () { entry.target.classList.add('visible'); }, i * 90);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
