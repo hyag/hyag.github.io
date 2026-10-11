@@ -96,7 +96,7 @@ body::before {
   z-index: 1;
   display: grid;
   grid-template-columns: 40% 60%;
-  min-height: clamp(360px, 50vw, 500px);
+  height: clamp(360px, 50vw, 500px);
 }
 
 .hero-image {
@@ -113,6 +113,7 @@ body::before {
   align-items: flex-start;
   justify-content: center;   /* 縦中央揃え */
   align-self: stretch;       /* グリッド行いっぱいに伸ばし、中央揃えの基準高さを確定させる */
+  height: 100%;
   padding: 2rem;
   background: var(--bg);
 }
@@ -152,7 +153,8 @@ body::before {
 @media (max-width: 760px) {
   .hero {
     grid-template-columns: 1fr;
-    min-height: 0;
+    /* 縦積みでは画像＋テキストの合計が固定高を超えるため内容に合わせる */
+    height: auto;
   }
   /* 1カラムでは行の引き伸ばしが効かないので高さを明示する */
   .hero-image { height: clamp(260px, 62vw, 380px); }
