@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hiro — Portfolio</title>
+<meta name="description" content="沖縄在住。FXトレード・ボット開発、AI画像生成、Webサイト制作。AIツールを使って、アイデアを形にします。">
+<meta name="color-scheme" content="light dark">
+
+<!-- OGP（公開時はURLと画像を差し替えてください） -->
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Hiro — Portfolio">
+<meta property="og:description" content="沖縄在住。AIツールを使って、アイデアを形にするのが得意です。">
+
+<style>
+/* ============================================================
+   Design tokens
+   ============================================================ */
+:root {
+  --accent:        #0e9aa7;   /* 沖縄の海をイメージしたターコイズ */
+  --accent-strong: #0b7b86;
+  --accent-soft:   rgba(14, 154, 167, .10);
+
+  --bg:            #fbfbf9;
+  --bg-elevated:   #ffffff;
+  --border:        #e7e5e0;
+  --text:          #1c1c1a;
+  --text-muted:    #6b6b66;
+
+  --radius:        14px;
+  --shadow:        0 1px 2px rgba(20, 20, 18, .04),
+                   0 8px 24px rgba(20, 20, 18, .05);
+  --maxw:          720px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent:        #3fc8d6;
+    --accent-strong: #76dbe6;
+    --accent-soft:   rgba(63, 200, 214, .12);
+
+    --bg:            #101312;
+    --bg-elevated:   #171b1a;
+    --border:        #262b2a;
+    --text:          #eceeed;
+    --text-muted:    #9aa3a1;
+
+    --shadow:        0 1px 2px rgba(0, 0, 0, .3),
+                     0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 背景のごく淡いグロー（装飾） */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vh 0 auto 0;
+  height: 60vh;
+  background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: clamp(4rem, 14vw, 7rem) 0 clamp(2.5rem, 8vw, 4rem);
+  text-align: center;
+}
+
+.avatar {
+  width: 92px;
+  height: 92px;
+  margin: 0 auto 1.6rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0;
+  background: linear-gradient(140deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 0 0 6px var(--accent-soft), var(--shadow);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 9vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+.location {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  margin-top: 1rem;
+  padding: .3rem .9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+.tagline {
+  max-width: 30em;
+  margin: 1.6rem auto 0;
+  font-size: clamp(1.02rem, 3.4vw, 1.18rem);
+  color: var(--text);
+}
+
+.tagline strong {
+  font-weight: 700;
+  background: linear-gradient(transparent 62%, var(--accent-soft) 62%);
+}
+
+/* ============================================================
+   Sections
+   ============================================================ */
+section { padding-block: clamp(2rem, 7vw, 3.2rem); }
+
+.label {
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================================
+   Skills
+   ============================================================ */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.5rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, border-color .25s ease;
+}
+
+/* ホバーできる環境だけ動かす（タップ端末で貼り付かないように） */
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+  }
+}
+
+.card .icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 1rem;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: var(--accent-soft);
+}
+
+.card h3 {
+  margin: 0 0 .3rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.card p {
+  margin: 0;
+  font-size: .86rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+   About
+   ============================================================ */
+.about {
+  padding: 1.7rem 1.6rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+.about p { margin: 0; font-size: .97rem; }
+.about p + p { margin-top: .9rem; }
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: 3rem 0 3.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .card { transition: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="avatar" aria-hidden="true">H</div>
+    <h1>Hiro</h1>
+    <p class="location"><span aria-hidden="true">📍</span>沖縄</p>
+    <p class="tagline">
+      AIツールを使って、<strong>アイデアを形にする</strong>のが得意です。
+    </p>
+  </header>
+
+  <main>
+    <!-- ============ SKILLS ============ -->
+    <section aria-labelledby="skills-label">
+      <h2 class="label" id="skills-label">Skills</h2>
+      <div class="skills">
+
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">📈</div>
+          <h3>FXトレード・ボット開発</h3>
+          <p>相場分析から自動売買ロジックの設計・実装まで。シグナル通知の仕組みづくりも手がけます。</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">🎨</div>
+          <h3>AI画像生成</h3>
+          <p>生成AIを使ったビジュアル制作。狙ったイメージに近づけるプロンプト設計が強みです。</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">🌐</div>
+          <h3>Webサイト制作</h3>
+          <p>シンプルで見やすく、スマホでも快適に読めるサイトを制作します。</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section aria-labelledby="about-label">
+      <h2 class="label" id="about-label">About</h2>
+      <div class="about reveal">
+        <p>沖縄を拠点に、FXトレードのボット開発、AI画像生成、Webサイト制作に取り組んでいます。</p>
+        <p>「あったらいいな」と思ったものを、AIツールを味方につけて実際に動く形にしていく——そのプロセスが何より楽しい時間です。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2026</span> Hiro</p>
+  </footer>
+
+</div>
+
+<script>
+// 年を自動更新
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// スクロールで順にフェードイン
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // IntersectionObserver 非対応 / モーション抑制設定なら即表示
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      setTimeout(function () { entry.target.classList.add('visible'); }, i * 90);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
