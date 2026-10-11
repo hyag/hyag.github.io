@@ -96,15 +96,16 @@ body::before {
   z-index: 1;
   display: grid;
   grid-template-columns: 40% 60%;
-  height: clamp(300px, 42vw, 420px);
+  height: clamp(260px, 38vw, 380px);
 }
 
 .hero-image {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
+  object-fit: cover;          /* 上下のカットは object-fit/object-position が担う */
+  object-position: center 40%;
+  overflow: hidden;
 }
 
 .hero-body {
