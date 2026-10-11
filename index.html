@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hiro — Portfolio</title>
-<meta name="description" content="沖縄在住。FXトレード・ボット開発、AI画像生成、Webサイト制作。AIツールを使って、アイデアを形にします。">
+<meta name="description" content="沖縄在住。FXトレード・ボット開発、AI画像生成、Webサイト制作。頭の中にあるものを、画面の上に。">
 <meta name="color-scheme" content="light dark">
 
 <!-- OGP（公開時はURLと画像を差し替えてください） -->
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Hiro — Portfolio">
-<meta property="og:description" content="沖縄在住。AIツールを使って、アイデアを形にするのが得意です。">
+<meta property="og:description" content="沖縄在住。Webサイト制作や自動化ツールの開発を請け負っています。頭の中にあるものを、画面の上に。">
 
 <style>
 /* ============================================================
@@ -171,7 +171,7 @@ section { padding-block: clamp(2rem, 7vw, 3.2rem); }
    ============================================================ */
 .skills {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
 }
 
@@ -231,6 +231,14 @@ section { padding-block: clamp(2rem, 7vw, 3.2rem); }
 .about p { margin: 0; font-size: .97rem; }
 .about p + p { margin-top: .9rem; }
 
+/* メールリンク（ブラウザ既定の青リンクだとダークモードで読めないため） */
+.about a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+}
+.about a:hover { border-bottom-color: var(--accent); }
+
 /* ============================================================
    Footer
    ============================================================ */
@@ -269,7 +277,7 @@ footer {
     <h1>Hiro</h1>
     <p class="location"><span aria-hidden="true">📍</span>沖縄</p>
     <p class="tagline">
-      AIツールを使って、<strong>アイデアを形にする</strong>のが得意です。
+      頭の中にあるものを、<strong>画面の上に。</strong>
     </p>
   </header>
 
@@ -282,19 +290,25 @@ footer {
         <article class="card reveal">
           <div class="icon" aria-hidden="true">📈</div>
           <h3>FXトレード・ボット開発</h3>
-          <p>相場分析から自動売買ロジックの設計・実装まで。シグナル通知の仕組みづくりも手がけます。</p>
+          <p>自動売買ロジックの設計からシグナル通知の実装まで。MT5連携やDiscord通知なども対応。</p>
         </article>
 
         <article class="card reveal">
           <div class="icon" aria-hidden="true">🎨</div>
           <h3>AI画像生成</h3>
-          <p>生成AIを使ったビジュアル制作。狙ったイメージに近づけるプロンプト設計が強みです。</p>
+          <p>Midjourneyを使った画像制作。商用利用可能な素材づくりも対応します。</p>
         </article>
 
         <article class="card reveal">
           <div class="icon" aria-hidden="true">🌐</div>
           <h3>Webサイト制作</h3>
-          <p>シンプルで見やすく、スマホでも快適に読めるサイトを制作します。</p>
+          <p>スマホ対応の静的サイトをゼロから制作。公開までひとりで完結します。</p>
+        </article>
+
+        <article class="card reveal">
+          <div class="icon" aria-hidden="true">🎽</div>
+          <h3>グラフィックデザイン</h3>
+          <p>オリジナルTシャツやグッズ向けのデザイン制作。データ納品まで対応します。</p>
         </article>
 
       </div>
@@ -304,8 +318,18 @@ footer {
     <section aria-labelledby="about-label">
       <h2 class="label" id="about-label">About</h2>
       <div class="about reveal">
-        <p>沖縄を拠点に、FXトレードのボット開発、AI画像生成、Webサイト制作に取り組んでいます。</p>
-        <p>「あったらいいな」と思ったものを、AIツールを味方につけて実際に動く形にしていく——そのプロセスが何より楽しい時間です。</p>
+        <p>沖縄を拠点に、Webサイト制作や自動化ツールの開発を請け負っています。</p>
+        <p>わからないことは調べて手を動かすスタイルで、FXボット、通知システム、静的サイトなどこれまでいくつか形にしてきました。日本語・英語どちらでも対応できます。</p>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section aria-labelledby="contact-label">
+      <h2 class="label" id="contact-label">Contact</h2>
+      <div class="about reveal">
+        <p>お気軽にご相談ください。</p>
+        <p><a href="mailto:yagawasa@gmail.com">yagawasa@gmail.com</a></p>
+        <span class="location">日本語・英語対応</span>
       </div>
     </section>
   </main>
