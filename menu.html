@@ -89,23 +89,45 @@ body::before {
 /* ============================================================
    Hero
    ============================================================ */
-.hero {
-  padding: clamp(2rem, 6vw, 3.5rem) 0 clamp(2.5rem, 8vw, 4rem);
-  text-align: center;
+/* 画像とテキストの重ね合わせの基準。
+   z-index:1 で body::before のグラデーションより前面に置く */
+.hero-media {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1080px);
+  margin: 0 auto;
+}
+
+/* 文字の可読性を確保する暗部グラデーション */
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, .65) 0%, transparent 60%);
+  pointer-events: none;
 }
 
 /* 枠の比率を画像と同じ 2.5:1 に保ち、切り落としを出さない
    （幅100vw・高さ40vw → 常に 2.5:1。1080px で頭打ち） */
 .hero-image {
   display: block;
-  width: min(100%, 1080px);
+  width: 100%;
   height: clamp(180px, 40vw, 432px);
   object-fit: cover;
-  object-position: center 50%;
+  object-position: center 65%;
   border-radius: 0;
-  margin: 0 auto;
-  position: relative;
+  margin: 0;
+}
+
+/* 画像下部中央に重ねる。::after より前面に出すため z-index:1 */
+.hero {
+  position: absolute;
   z-index: 1;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: clamp(1rem, 3vw, 1.8rem);
+  text-align: center;
+  color: #fff;
 }
 
 .hero h1 {
@@ -114,24 +136,27 @@ body::before {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -.01em;
+  color: #fff;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .45);
 }
 
 .subtitle {
-  margin: .6rem 0 0;
-  color: var(--text-muted);
+  margin: .4rem 0 0;
+  color: rgba(255, 255, 255, .88);
   font-size: clamp(.95rem, 3.2vw, 1.05rem);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .5);
 }
 
 .hours {
   display: inline-flex;
   align-items: center;
   gap: .4em;
-  margin-top: 1.2rem;
+  margin-top: .9rem;
   padding: .3rem .9rem;
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, .4);
   border-radius: 999px;
-  background: var(--bg-elevated);
-  color: var(--text-muted);
+  background: rgba(0, 0, 0, .3);
+  color: #fff;
   font-size: .82rem;
   line-height: 1.6;
 }
@@ -244,18 +269,18 @@ footer {
 
 <body>
 
-<!-- ============ HERO IMAGE（全幅表示のため .wrap の外に配置）============ -->
-<img class="hero-image" src="images/hero.jpg" width="2000" height="800"
-     alt="木のテーブルに並んだペペロンチーノ、マルゲリータピザ、カプチーノ、エスプレッソ、パン">
-
-<div class="wrap">
-
-  <!-- ============ HERO ============ -->
+<!-- ============ HERO（.wrap の外。画像に店名を重ねる）============ -->
+<div class="hero-media">
+  <img class="hero-image" src="images/hero.jpg" width="2000" height="800"
+       alt="木のテーブルに並んだペペロンチーノ、マルゲリータピザ、カプチーノ、エスプレッソ、パン">
   <header class="hero">
     <h1>Trattoria Sole</h1>
     <p class="subtitle">沖縄のイタリアンカフェ</p>
     <p class="hours"><span aria-hidden="true">🕚</span>11:00 - 21:00（月曜定休）</p>
   </header>
+</div>
+
+<div class="wrap">
 
   <main>
     <!-- ============ PASTA ============ -->
