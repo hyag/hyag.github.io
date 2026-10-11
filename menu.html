@@ -94,14 +94,16 @@ body::before {
   text-align: center;
 }
 
+/* 枠の比率を画像と同じ 2.5:1 に保ち、切り落としを出さない
+   （幅100vw・高さ40vw → 常に 2.5:1。1080px で頭打ち） */
 .hero-image {
   display: block;
-  width: 100%;
-  height: clamp(200px, 30vw, 320px);
+  width: min(100%, 1080px);
+  height: clamp(180px, 40vw, 432px);
   object-fit: cover;
   object-position: center 50%;
   border-radius: 0;
-  margin-bottom: 0;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
 }
@@ -243,7 +245,7 @@ footer {
 <body>
 
 <!-- ============ HERO IMAGE（全幅表示のため .wrap の外に配置）============ -->
-<img class="hero-image" src="images/hero.jpg" width="1200" height="500"
+<img class="hero-image" src="images/hero.jpg" width="2000" height="800"
      alt="木のテーブルに並んだペペロンチーノ、マルゲリータピザ、カプチーノ、エスプレッソ、パン">
 
 <div class="wrap">
