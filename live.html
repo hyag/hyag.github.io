@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Coral Tides — 2026.12.13 桜坂劇場</title>
-<meta name="description" content="The Coral Tides ワンマンライブ。2026年12月13日（土）桜坂劇場。開場18:00 / 開演19:00。前売3,500円 / 当日4,000円。沖縄から鳴らす、本物の音。">
+<meta name="description" content="The Coral Tides ワンマンライブ。2026年12月13日（土）桜坂劇場。開場18:00 / 開演19:00。前売3,500円 / 当日4,000円。この島で、この夜だけ。">
 <meta name="color-scheme" content="dark">
 
 <!-- OGP（公開時はURLと画像を差し替えてください） -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Coral Tides — 2026.12.13 桜坂劇場">
-<meta property="og:description" content="沖縄から鳴らす、本物の音。2026年12月13日（土）桜坂劇場。">
+<meta property="og:description" content="この島で、この夜だけ。2026年12月13日（土）桜坂劇場。">
 
 <style>
 /* ============================================================
@@ -62,17 +62,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ステージ照明のような上部グロー */
-body::before {
-  content: "";
-  position: fixed;
-  inset: -25vh 0 auto 0;
-  height: 80vh;
-  background: radial-gradient(55% 60% at 50% 0%, var(--accent-soft), transparent 72%);
-  pointer-events: none;
-  z-index: 0;
-}
-
 .wrap {
   position: relative;
   z-index: 1;
@@ -81,38 +70,71 @@ body::before {
 }
 
 /* ============================================================
-   Hero
+   Hero（.wrap の外・全幅。画像に文字を重ねる）
    ============================================================ */
-.hero {
-  padding: clamp(3.5rem, 12vw, 6rem) 0 clamp(2rem, 7vw, 3rem);
-  text-align: center;
+.hero-media {
+  position: relative;
+  width: 100%;
 }
 
-.eyebrow {
-  margin: 0 0 1rem;
-  font-size: .72rem;
-  font-weight: 700;
-  letter-spacing: .28em;
-  text-transform: uppercase;
-  color: var(--accent);
+/* 文字の可読性を確保する暗部グラデーション */
+.hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+              rgba(0, 0, 0, .85) 0%,
+              rgba(0, 0, 0, .3) 60%,
+              transparent 100%);
+  pointer-events: none;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: clamp(400px, 60vw, 640px);
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+/* 画像下部中央に重ねる。::after より前面に出すため z-index:1 */
+.hero {
+  position: absolute;
+  z-index: 1;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: clamp(1.5rem, 4vw, 2.6rem);
+  text-align: center;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.6rem, 11vw, 4.6rem);
+  font-size: clamp(2.3rem, 9.5vw, 4.2rem);
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -.02em;
-  background: linear-gradient(170deg, var(--accent-strong), var(--accent));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, .6);
 }
 
 .tagline {
+  margin: .7rem 0 0;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-weight: 700;
+  color: var(--accent);
+  text-shadow: 0 1px 14px rgba(0, 0, 0, .7);
+}
+
+.hero-date {
   margin: 1.1rem 0 0;
-  font-size: clamp(1rem, 4vw, 1.22rem);
-  color: var(--text);
+  font-size: clamp(.85rem, 3.4vw, .98rem);
+  color: rgba(255, 255, 255, .9);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, .7);
+}
+
+.hero-date .sep {
+  margin: 0 .5em;
+  color: rgba(255, 255, 255, .4);
 }
 
 /* ---- カウントダウン ---- */
@@ -120,63 +142,29 @@ body::before {
   display: inline-flex;
   align-items: baseline;
   gap: .55rem;
-  margin-top: 2rem;
-  padding: .7rem 1.5rem;
-  border: 1px solid var(--accent-soft);
+  margin: 1.3rem 0 0;
+  padding: .55rem 1.4rem;
+  border: 1px solid rgba(232, 160, 32, .45);
   border-radius: 999px;
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow);
+  background: rgba(0, 0, 0, .45);
 }
 
 .countdown-label {
-  font-size: .8rem;
-  color: var(--text-muted);
+  font-size: .78rem;
+  color: rgba(255, 255, 255, .8);
 }
 
 .countdown-value {
-  font-size: clamp(1.15rem, 5vw, 1.5rem);
+  font-size: clamp(1.05rem, 4.5vw, 1.35rem);
   font-weight: 700;
   color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
 
-/* ---- 日程・会場 ---- */
-.hero-meta {
-  display: grid;
-  gap: .55rem;
-  margin: 2.2rem 0 0;
-  padding: 1.3rem 1.4rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow);
-  text-align: left;
-}
-
-.hero-meta > div {
-  display: flex;
-  gap: 1rem;
-  align-items: baseline;
-}
-
-.hero-meta dt {
-  flex-shrink: 0;
-  width: 3.5em;
-  font-size: .76rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  color: var(--accent);
-}
-
-.hero-meta dd {
-  margin: 0;
-  font-size: .95rem;
-}
-
 /* ============================================================
    Sections
    ============================================================ */
-section { padding-block: clamp(1.8rem, 6vw, 2.8rem); }
+section { padding-block: clamp(2rem, 7vw, 3.2rem); }
 
 .label {
   margin: 0 0 1.3rem;
@@ -249,6 +237,15 @@ section { padding-block: clamp(1.8rem, 6vw, 2.8rem); }
   text-align: center;
 }
 
+.contact a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent-soft);
+}
+@media (hover: hover) {
+  .contact a:hover { border-bottom-color: var(--accent); }
+}
+
 /* ============================================================
    Access
    ============================================================ */
@@ -261,17 +258,8 @@ section { padding-block: clamp(1.8rem, 6vw, 2.8rem); }
   box-shadow: var(--shadow);
 }
 
-.access .venue {
-  margin: 0;
-  font-size: 1.08rem;
-  font-weight: 700;
-}
-
-.access .address {
-  margin: .3rem 0 0;
-  font-size: .92rem;
-  color: var(--text-muted);
-}
+.access .venue { margin: 0; font-size: 1.08rem; font-weight: 700; }
+.access .address { margin: .3rem 0 0; font-size: .92rem; color: var(--text-muted); }
 
 .map-link {
   display: inline-block;
@@ -300,10 +288,7 @@ footer {
   font-size: .78rem;
 }
 
-footer a {
-  color: var(--accent);
-  text-decoration: none;
-}
+footer a { color: var(--accent); text-decoration: none; }
 @media (hover: hover) {
   footer a:hover { text-decoration: underline; }
 }
@@ -327,35 +312,27 @@ footer a {
 </head>
 
 <body>
-<div class="wrap">
 
-  <!-- ============ HERO ============ -->
+<!-- ============ HERO（.wrap の外。全幅画像に文字を重ねる）============ -->
+<div class="hero-media">
+  <img class="hero-image" src="images/live-hero.jpg" width="2200" height="1228"
+       alt="ステージで演奏する The Coral Tides と客席のオーディエンス">
   <header class="hero">
-    <p class="eyebrow">One Night Live</p>
     <h1>The Coral Tides</h1>
-    <p class="tagline">沖縄から鳴らす、本物の音。</p>
-
-    <p class="countdown" id="countdown">
-      <span class="countdown-label">開演まで</span>
+    <p class="tagline">この島で、この夜だけ。</p>
+    <p class="hero-date">
+      <time datetime="2026-12-13">2026年12月13日（土）</time>
+      <span class="sep" aria-hidden="true">/</span>開場 18:00<span class="sep" aria-hidden="true">/</span>開演 19:00
+    </p>
+    <p class="countdown">
+      <span class="countdown-label" id="countdown-label">開演まで</span>
       <!-- JS無効時は開演日時をそのまま表示 -->
       <span class="countdown-value" id="countdown-value">2026.12.13 19:00</span>
     </p>
-
-    <dl class="hero-meta">
-      <div>
-        <dt>日程</dt>
-        <dd><time datetime="2026-12-13">2026年12月13日（土）</time></dd>
-      </div>
-      <div>
-        <dt>時間</dt>
-        <dd>開場 18:00 ／ 開演 19:00</dd>
-      </div>
-      <div>
-        <dt>会場</dt>
-        <dd>桜坂劇場</dd>
-      </div>
-    </dl>
   </header>
+</div>
+
+<div class="wrap">
 
   <main>
     <!-- ============ TICKETS ============ -->
@@ -383,7 +360,7 @@ footer a {
       <h2 class="label" id="access-label">Access</h2>
       <div class="access reveal">
         <p class="venue">桜坂劇場</p>
-        <p class="address">〒900-0013　沖縄県那覇市牧志3-6-10</p>
+        <p class="address">沖縄県那覇市牧志3-6-10</p>
         <a class="map-link"
            href="https://www.google.com/maps/search/?api=1&amp;query=%E6%A1%9C%E5%9D%82%E5%8A%87%E5%A0%B4%20%E9%82%A3%E8%A6%87%E5%B8%82%E7%89%A7%E5%BF%973-6-10"
            target="_blank" rel="noopener noreferrer">Googleマップで開く</a>
@@ -402,7 +379,7 @@ footer a {
 // ---- カウントダウン（開演＝2026-12-13 19:00 JST 固定）----
 (function () {
   var el = document.getElementById('countdown-value');
-  var label = document.querySelector('.countdown-label');
+  var label = document.getElementById('countdown-label');
   if (!el) return;
 
   // タイムゾーン付きで指定し、閲覧者の地域に関わらず同じ瞬間を指すようにする
@@ -420,9 +397,8 @@ footer a {
 
   function render() {
     var now = Date.now();
-    var diff = target.getTime() - now;
 
-    if (diff <= 0) {
+    if (target.getTime() - now <= 0) {
       if (label) { label.textContent = ''; }
       el.textContent = 'ご来場ありがとうございました';
       return false;
