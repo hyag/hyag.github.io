@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trattoria Sole — Menu</title>
+<meta name="description" content="沖縄のイタリアンカフェ Trattoria Sole のメニュー。パスタ・ピザ・ドリンク。営業時間 11:00 - 21:00（月曜定休）">
+<meta name="color-scheme" content="light dark">
+
+<!-- OGP（公開時はURLと画像を差し替えてください） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trattoria Sole — Menu">
+<meta property="og:description" content="沖縄のイタリアンカフェ。パスタ・ピザ・ドリンクのメニューです。">
+
+<style>
+/* ============================================================
+   Design tokens （index.html と同一構成／アクセントのみ赤系）
+   ============================================================ */
+:root {
+  --accent:        #c0392b;   /* イタリアンレッド */
+  --accent-strong: #96281b;
+  --accent-soft:   rgba(192, 57, 43, .10);
+
+  --bg:            #fbfbf9;
+  --bg-elevated:   #ffffff;
+  --border:        #e7e5e0;
+  --text:          #1c1c1a;
+  --text-muted:    #6b6b66;
+
+  --radius:        14px;
+  --shadow:        0 1px 2px rgba(20, 20, 18, .04),
+                   0 8px 24px rgba(20, 20, 18, .05);
+  --maxw:          720px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 暗背景で #c0392b はコントラスト不足のため明度を上げた同系色 */
+    --accent:        #ef8674;
+    --accent-strong: #f5a494;
+    --accent-soft:   rgba(239, 134, 116, .12);
+
+    --bg:            #101312;
+    --bg-elevated:   #171b1a;
+    --border:        #262b2a;
+    --text:          #eceeed;
+    --text-muted:    #9aa3a1;
+
+    --shadow:        0 1px 2px rgba(0, 0, 0, .3),
+                     0 8px 24px rgba(0, 0, 0, .25);
+  }
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+               "Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: .01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20vh 0 auto 0;
+  height: 60vh;
+  background: radial-gradient(60% 60% at 50% 0%, var(--accent-soft), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--maxw));
+  margin-inline: auto;
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero {
+  padding: clamp(4rem, 14vw, 7rem) 0 clamp(2.5rem, 8vw, 4rem);
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+
+.subtitle {
+  margin: .6rem 0 0;
+  color: var(--text-muted);
+  font-size: clamp(.95rem, 3.2vw, 1.05rem);
+}
+
+.hours {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  margin-top: 1.2rem;
+  padding: .3rem .9rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Sections
+   ============================================================ */
+section { padding-block: clamp(1.6rem, 6vw, 2.6rem); }
+
+.label {
+  margin: 0 0 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ============================================================
+   Menu list
+   ============================================================ */
+.menu {
+  margin: 0;
+  padding: .6rem 1.4rem;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow);
+}
+
+.item {
+  display: flex;
+  align-items: baseline;
+  gap: .7rem;
+  padding: .95rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+.item:last-child { border-bottom: none; }
+
+.item .name {
+  font-size: .98rem;
+  font-weight: 600;
+}
+
+/* 品名と金額をつなぐリーダー線 */
+.item .leader {
+  flex: 1;
+  min-width: 1.5rem;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right, var(--border) 0 3px, transparent 3px 7px);
+  transform: translateY(-.25em);
+}
+
+.item .price {
+  flex-shrink: 0;
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: 3rem 0 3.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: .78rem;
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <h1>Trattoria Sole</h1>
+    <p class="subtitle">沖縄のイタリアンカフェ</p>
+    <p class="hours"><span aria-hidden="true">🕚</span>11:00 - 21:00（月曜定休）</p>
+  </header>
+
+  <main>
+    <!-- ============ PASTA ============ -->
+    <section aria-labelledby="pasta-label">
+      <h2 class="label" id="pasta-label">パスタ</h2>
+      <ul class="menu reveal">
+        <li class="item">
+          <span class="name">マルゲリータピザ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,200円</span>
+        </li>
+        <li class="item">
+          <span class="name">ボンゴレビアンコ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,400円</span>
+        </li>
+        <li class="item">
+          <span class="name">カルボナーラ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,300円</span>
+        </li>
+        <li class="item">
+          <span class="name">トマトバジルパスタ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,100円</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ PIZZA ============ -->
+    <section aria-labelledby="pizza-label">
+      <h2 class="label" id="pizza-label">ピザ</h2>
+      <ul class="menu reveal">
+        <li class="item">
+          <span class="name">マルゲリータ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,100円</span>
+        </li>
+        <li class="item">
+          <span class="name">クアトロフォルマッジ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,400円</span>
+        </li>
+        <li class="item">
+          <span class="name">プロシュートルッコラ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">1,500円</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ DRINK ============ -->
+    <section aria-labelledby="drink-label">
+      <h2 class="label" id="drink-label">ドリンク</h2>
+      <ul class="menu reveal">
+        <li class="item">
+          <span class="name">エスプレッソ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">400円</span>
+        </li>
+        <li class="item">
+          <span class="name">カプチーノ</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">500円</span>
+        </li>
+        <li class="item">
+          <span class="name">レモネード</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">600円</span>
+        </li>
+        <li class="item">
+          <span class="name">ハウスワイン</span>
+          <span class="leader" aria-hidden="true"></span>
+          <span class="price">700円</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Trattoria Sole</p>
+  </footer>
+
+</div>
+
+<script>
+// スクロールで順にフェードイン（index.html と同じ挙動）
+(function () {
+  var items = document.querySelectorAll('.reveal');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry, i) {
+      if (!entry.isIntersecting) return;
+      setTimeout(function () { entry.target.classList.add('visible'); }, i * 90);
+      io.unobserve(entry.target);
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  items.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
