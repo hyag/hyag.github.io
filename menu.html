@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- ここを書き換えてください：ブラウザのタブに表示されるタイトル（店名） -->
 <title>Trattoria Sole — Menu</title>
+<!-- ここを書き換えてください：検索結果に表示される紹介文 -->
 <meta name="description" content="沖縄のイタリアンカフェ Trattoria Sole のメニュー。パスタ・ピザ・ドリンク。営業時間 11:00 - 22:00（月曜定休）">
 <meta name="color-scheme" content="light dark">
 
-<!-- OGP（公開時はURLと画像を差し替えてください） -->
+<!-- OGP（SNSでシェアされたときの表示）
+     ここを書き換えてください：og:title は店名、og:description は紹介文 -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="Trattoria Sole — Menu">
 <meta property="og:description" content="沖縄のイタリアンカフェ。パスタ・ピザ・ドリンクのメニューです。">
@@ -17,6 +20,9 @@
    Design tokens （index.html と同一構成／アクセントのみ赤系）
    ============================================================ */
 :root {
+  /* ここを書き換えてください：テーマカラー（お店のイメージカラー）
+     --accent を変えたら、下の @media (prefers-color-scheme: dark) 内の
+     --accent も明るめの同系色に合わせて変更してください */
   --accent:        #c0392b;   /* イタリアンレッド */
   --accent-strong: #96281b;
   --accent-soft:   rgba(192, 57, 43, .10);
@@ -271,11 +277,17 @@ footer {
 
 <!-- ============ HERO（.wrap の外。画像に店名を重ねる）============ -->
 <div class="hero-media">
+  <!-- ここを書き換えてください：トップ画像
+       images/hero.jpg を自分の写真に差し替えます（横長 2.5:1 推奨）。
+       alt には画像の内容を文章で書いてください（音声読み上げ用） -->
   <img class="hero-image" src="images/hero.jpg" width="2000" height="800"
        alt="木のテーブルに並んだペペロンチーノ、マルゲリータピザ、カプチーノ、エスプレッソ、パン">
   <header class="hero">
+    <!-- ここを書き換えてください：店名 -->
     <h1>Trattoria Sole</h1>
+    <!-- ここを書き換えてください：サブタイトル（お店の一言紹介） -->
     <p class="subtitle">沖縄のイタリアンカフェ</p>
+    <!-- ここを書き換えてください：営業時間・定休日 -->
     <p class="hours"><span aria-hidden="true">🕚</span>11:00 - 22:00（月曜定休）</p>
   </header>
 </div>
@@ -285,16 +297,24 @@ footer {
   <main>
     <!-- ============ PASTA ============ -->
     <section aria-labelledby="pasta-label">
+      <!-- ここを書き換えてください：カテゴリ名 -->
       <h2 class="label" id="pasta-label">パスタ</h2>
       <ul class="menu reveal">
+        <!-- ここを書き換えてください：メニュー1品分
+             この <li> ～ </li> をまるごとコピーすれば品数を増やせます。
+             減らすときは <li> ～ </li> をまとめて削除してください -->
         <li class="item">
           <span class="info">
+            <!-- ここを書き換えてください：品名 -->
             <span class="name">ペペロンチーノ</span>
+            <!-- ここを書き換えてください：説明（不要ならこの行ごと削除） -->
             <span class="desc">にんにくと唐辛子のシンプルな旨味</span>
           </span>
           <span class="leader" aria-hidden="true"></span>
+          <!-- ここを書き換えてください：価格 -->
           <span class="price">1,200円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">ボンゴレビアンコ</span>
@@ -303,6 +323,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,400円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">カルボナーラ</span>
@@ -311,6 +332,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,300円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">トマトバジルパスタ</span>
@@ -324,8 +346,10 @@ footer {
 
     <!-- ============ PIZZA ============ -->
     <section aria-labelledby="pizza-label">
+      <!-- ここを書き換えてください：カテゴリ名 -->
       <h2 class="label" id="pizza-label">ピザ</h2>
       <ul class="menu reveal">
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">マルゲリータ</span>
@@ -334,6 +358,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,100円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">クアトロフォルマッジ</span>
@@ -342,6 +367,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">1,400円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">プロシュートルッコラ</span>
@@ -355,8 +381,10 @@ footer {
 
     <!-- ============ DRINK ============ -->
     <section aria-labelledby="drink-label">
+      <!-- ここを書き換えてください：カテゴリ名 -->
       <h2 class="label" id="drink-label">ドリンク</h2>
       <ul class="menu reveal">
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">エスプレッソ</span>
@@ -365,6 +393,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">400円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">カプチーノ</span>
@@ -373,6 +402,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">500円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">レモネード</span>
@@ -381,6 +411,7 @@ footer {
           <span class="leader" aria-hidden="true"></span>
           <span class="price">600円</span>
         </li>
+        <!-- ここを書き換えてください：品名・説明・価格 -->
         <li class="item">
           <span class="info">
             <span class="name">ハウスワイン</span>
@@ -394,9 +425,11 @@ footer {
   </main>
 
   <footer>
+    <!-- 制作者ポートフォリオへのリンク。不要なら <p> ～ </p> を削除してください -->
     <p><a href="index.html"
           style="color:var(--accent);text-decoration:none;">
       ← Hiro のポートフォリオへ戻る</a></p>
+    <!-- ここを書き換えてください：コピーライト（年・店名） -->
     <p>&copy; 2026 Trattoria Sole</p>
   </footer>
 
