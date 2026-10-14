@@ -263,6 +263,50 @@ section { padding-block: clamp(2rem, 7vw, 3.2rem); }
   .card-link:hover { text-decoration: underline; }
 }
 
+/* Works の小見出し */
+.works-sub {
+  margin: 0 0 .9rem;
+  font-size: .86rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.works + .works-sub { margin-top: 2.2rem; }
+
+/* 部品・ツール：カードにせず1行ずつの一覧 */
+.tool-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.tool-list li + li { border-top: 1px solid var(--border); }
+.tool-list a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .1rem .9rem;
+  padding: .75rem 1.2rem;
+  color: inherit;
+  text-decoration: none;
+}
+.tool-name { font-size: .92rem; font-weight: 700; color: var(--accent); }
+.tool-desc { font-size: .8rem; color: var(--text-muted); }
+@media (hover: hover) {
+  .tool-list a:hover { background: var(--accent-soft); }
+}
+
+/* Contact の note リンク */
+.about .note-links { margin-top: .8rem; }
+.about .note-links a {
+  display: block;
+  margin-top: .3rem;
+  font-size: .82rem;
+  border-bottom: none;
+}
+
 /* ============================================================
    About
    ============================================================ */
@@ -366,7 +410,30 @@ footer {
     <!-- ============ WORKS ============ -->
     <section aria-labelledby="works-label">
       <h2 class="label" id="works-label">Works</h2>
+
+      <h3 class="works-sub">お店・事業者向けサイト</h3>
       <div class="works">
+
+        <article class="card reveal">
+          <h3>Feuille</h3>
+          <p>ナチュラル系美容室の4ページサイト</p>
+          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
+          <a class="card-link" href="https://hyag.github.io/feuille/">サイトを見る →</a>
+        </article>
+
+        <article class="card reveal">
+          <h3>琉球整体院 なごみ</h3>
+          <p>整体・マッサージ院のLP＋Formspree予約フォーム</p>
+          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
+          <a class="card-link" href="https://hyag.github.io/sekkotsu/">サイトを見る →</a>
+        </article>
+
+        <article class="card reveal">
+          <h3>うみかじ工務店</h3>
+          <p>工務店の問い合わせフォーム付きLP</p>
+          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
+          <a class="card-link" href="https://hyag.github.io/umikaji/">サイトを見る →</a>
+        </article>
 
         <article class="card reveal">
           <h3>Trattoria Sole</h3>
@@ -383,76 +450,23 @@ footer {
         </article>
 
         <article class="card reveal">
-          <h3>SNS Profile Cards</h3>
-          <p>Twitter/X・Instagram・TikTok風のプロフィールカード3パターン比較</p>
-          <p class="tags"><span class="tag">HTML / CSS</span></p>
-          <a class="card-link" href="cards.html">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>Feuille</h3>
-          <p>ナチュラル系美容室の4ページサイト</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/feuille/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>うみかじ工務店</h3>
-          <p>工務店の問い合わせフォーム付きLP</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/umikaji/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
           <h3>ARCH</h3>
           <p>建築・インテリアのスライドショーギャラリー</p>
           <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
           <a class="card-link" href="https://hyag.github.io/arch/">サイトを見る →</a>
         </article>
 
-        <article class="card reveal">
-          <h3>天気ウィジェット</h3>
-          <p>リアルタイム天気・5日間予報（OpenWeather API）</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/weather/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>琅球整体院 なごみ</h3>
-          <p>整体・マッサージ院のLP＋Formspree予約フォーム</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/sekkotsu/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>BMI計算機</h3>
-          <p>ゲージ・分類表・理想体重表示付きBMI計算</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/bmi/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>QRコード生成ツール</h3>
-          <p>色・サイズ設定付きQRコード生成・PNG保存</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/qr/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>ToDo アプリ</h3>
-          <p>期限・優先度設定付きタスク管理アプリ</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/todo/">サイトを見る →</a>
-        </article>
-
-        <article class="card reveal">
-          <h3>SpeakUp 料金プラン</h3>
-          <p>月払い・年払い切り替え付き3プラン比較カード</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/pricing/">サイトを見る →</a>
-        </article>
-
       </div>
+
+      <h3 class="works-sub">部品・ツール</h3>
+      <ul class="tool-list reveal">
+        <li><a href="https://hyag.github.io/pricing/"><span class="tool-name">SpeakUp 料金プラン</span><span class="tool-desc">月払い・年払い切り替え付き3プラン比較カード</span></a></li>
+        <li><a href="cards.html"><span class="tool-name">SNS Profile Cards</span><span class="tool-desc">X・Instagram・TikTok風プロフィールカード3パターン</span></a></li>
+        <li><a href="https://hyag.github.io/weather/"><span class="tool-name">天気ウィジェット</span><span class="tool-desc">リアルタイム天気・5日間予報（OpenWeather API）</span></a></li>
+        <li><a href="https://hyag.github.io/qr/"><span class="tool-name">QRコード生成ツール</span><span class="tool-desc">色・サイズ設定付き、PNG保存</span></a></li>
+        <li><a href="https://hyag.github.io/bmi/"><span class="tool-name">BMI計算機</span><span class="tool-desc">ゲージ・分類表・理想体重表示</span></a></li>
+        <li><a href="https://hyag.github.io/todo/"><span class="tool-name">ToDo アプリ</span><span class="tool-desc">期限・優先度設定付きタスク管理</span></a></li>
+      </ul>
     </section>
 
     <!-- ============ ABOUT ============ -->
@@ -470,10 +484,9 @@ footer {
       <div class="about reveal">
         <p>お気軽にご相談ください。</p>
         <p><a href="mailto:hello.heroworks@gmail.com">hello.heroworks@gmail.com</a></p>
-        <a href="https://note.com/deep_salvia2124/n/nd3f7a7b3ba26"
-           target="_blank"
-           style="display:inline-block;margin-top:.8rem;font-size:.82rem;color:var(--accent);">
-        テンプレート販売中（note）→</a>
+        <p class="note-links">
+          <a href="https://note.com/deep_salvia2124/n/nd3f7a7b3ba26" target="_blank" rel="noopener">テンプレート販売中（note）→</a>
+        </p>
       </div>
     </section>
   </main>
