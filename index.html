@@ -196,8 +196,9 @@ section { padding-block: clamp(2rem, 7vw, 3.2rem); }
 }
 
 /* ホバーできる環境だけ動かす（タップ端末で貼り付かないように） */
+/* 動くのはクリックできる作品カードだけ（Skillsは押せないので動かさない） */
 @media (hover: hover) {
-  .card:hover {
+  .work-card:hover {
     transform: translateY(-3px);
     border-color: var(--accent);
   }
@@ -262,6 +263,33 @@ section { padding-block: clamp(2rem, 7vw, 3.2rem); }
 @media (hover: hover) {
   .card-link:hover { text-decoration: underline; }
 }
+
+/* 作品カード：上にサムネイル、カード全体がリンク */
+.work-card {
+  position: relative;
+  overflow: hidden;
+}
+.work-thumb {
+  display: block;
+  width: calc(100% + 2.8rem);
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: top;
+  margin: -1.5rem -1.4rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+/* リンクの押せる範囲をカード全体に広げる */
+.work-card .card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.work-card:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.work-card .card-link:focus { outline: none; }
 
 /* Works の小見出し */
 .works-sub {
@@ -414,46 +442,46 @@ footer {
       <h3 class="works-sub">お店・事業者向けサイト</h3>
       <div class="works">
 
-        <article class="card reveal">
+        <article class="card work-card reveal">
+          <img class="work-thumb" src="images/thumbs/feuille.jpg" width="800" height="500" alt="" loading="lazy">
           <h3>Feuille</h3>
           <p>ナチュラル系美容室の4ページサイト</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/feuille/">サイトを見る →</a>
+          <a class="card-link" href="https://hyag.github.io/feuille/" aria-label="Feuilleのサイトを見る">サイトを見る →</a>
         </article>
 
-        <article class="card reveal">
+        <article class="card work-card reveal">
+          <img class="work-thumb" src="images/thumbs/sekkotsu.jpg" width="800" height="500" alt="" loading="lazy">
           <h3>琉球整体院 なごみ</h3>
           <p>整体・マッサージ院のLP＋Formspree予約フォーム</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/sekkotsu/">サイトを見る →</a>
+          <a class="card-link" href="https://hyag.github.io/sekkotsu/" aria-label="琉球整体院 なごみのサイトを見る">サイトを見る →</a>
         </article>
 
-        <article class="card reveal">
+        <article class="card work-card reveal">
+          <img class="work-thumb" src="images/thumbs/umikaji.jpg" width="800" height="500" alt="" loading="lazy">
           <h3>うみかじ工務店</h3>
           <p>工務店の問い合わせフォーム付きLP</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/umikaji/">サイトを見る →</a>
+          <a class="card-link" href="https://hyag.github.io/umikaji/" aria-label="うみかじ工務店のサイトを見る">サイトを見る →</a>
         </article>
 
-        <article class="card reveal">
+        <article class="card work-card reveal">
+          <img class="work-thumb" src="images/thumbs/trattoria.jpg" width="800" height="500" alt="" loading="lazy">
           <h3>Trattoria Sole</h3>
           <p>沖縄のイタリアンカフェのメニューページ</p>
-          <p class="tags"><span class="tag">HTML / CSS</span></p>
-          <a class="card-link" href="menu.html">サイトを見る →</a>
+          <a class="card-link" href="menu.html" aria-label="Trattoria Soleのサイトを見る">サイトを見る →</a>
         </article>
 
-        <article class="card reveal">
+        <article class="card work-card reveal">
+          <img class="work-thumb" src="images/thumbs/coral.jpg" width="800" height="500" alt="" loading="lazy">
           <h3>The Coral Tides</h3>
           <p>インディーバンドのライブ告知LP</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="live.html">サイトを見る →</a>
+          <a class="card-link" href="live.html" aria-label="The Coral Tidesのサイトを見る">サイトを見る →</a>
         </article>
 
-        <article class="card reveal">
+        <article class="card work-card reveal">
+          <img class="work-thumb" src="images/thumbs/arch.jpg" width="800" height="500" alt="" loading="lazy">
           <h3>ARCH</h3>
           <p>建築・インテリアのスライドショーギャラリー</p>
-          <p class="tags"><span class="tag">HTML / CSS / JavaScript</span></p>
-          <a class="card-link" href="https://hyag.github.io/arch/">サイトを見る →</a>
+          <a class="card-link" href="https://hyag.github.io/arch/" aria-label="ARCHのサイトを見る">サイトを見る →</a>
         </article>
 
       </div>
